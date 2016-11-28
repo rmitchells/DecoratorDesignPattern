@@ -67,6 +67,16 @@ namespace DecoratorDesignPattern
         }
     }
 
+    public class ButterCreamDecorator : Decorator
+    {
+        public ButterCreamDecorator(BakedGood bakedGood)
+            : base(bakedGood)
+        {
+            Name = "Butter Cream Frosting";
+            Price = 15.00m;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -75,8 +85,9 @@ namespace DecoratorDesignPattern
 
             var Cake = new CakeBasic();
             var CherryCake = new CherryDecorator(Cake);
-            var NameCaked = new NameDecorator(Cake);
-            var NameCherryCaked = new NameDecorator(CherryCake);
+            var NameCake = new NameDecorator(Cake);
+            var NameCherryCake = new NameDecorator(CherryCake);
+            var ButterCreamNameCherryCake = new ButterCreamDecorator(NameCherryCake);
 
             // Beauty is didn't have to make NameCherryDecorator class.
             // As more Decorators are added the combinations grows
@@ -84,8 +95,9 @@ namespace DecoratorDesignPattern
 
             Cakes.Add(Cake);
             Cakes.Add(CherryCake);
-            Cakes.Add(NameCaked);
-            Cakes.Add(NameCherryCaked);
+            Cakes.Add(NameCake);
+            Cakes.Add(NameCherryCake);
+            Cakes.Add(ButterCreamNameCherryCake);
 
             foreach (BakedGood bakedGood in Cakes)
             {
